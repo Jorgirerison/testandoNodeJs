@@ -21,10 +21,10 @@ const server = http.createServer((req, res)=> {
             email:'jorgirerison@gmail.com'
         })
 
-        return res.end('Criação de usuários')
+        return res.writeHead(201).end()
     }
 
-    return res.end('Hellow world')
+    return res.writeHead(404).end('Hellow world')
 })
 
 server.listen(3333)
