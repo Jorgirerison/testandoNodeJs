@@ -1,17 +1,17 @@
-import Readble from 'stream'
+import {Readable} from 'node:stream'
 
-class OneToHundredStream extends Readble {
+class OneToHundredStream extends Readable {
     index = 1
-
+    
     _read() {
         const i = this.index++
 
         setTimeout(()=> {
-            if (i > 100) {
+            if (i>100) {
                 this.push(null)
             } else {
                 const buf = Buffer.from(String(i))
-
+    
                 this.push(buf)
             }
         }, 1000)
@@ -19,6 +19,7 @@ class OneToHundredStream extends Readble {
 }
 
 fetch('http://localhost:3334', {
-    method: 'POST',
+    duplex: "half",
+    method:'POST',
     body: new OneToHundredStream()
 })
