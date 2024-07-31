@@ -33,9 +33,9 @@ export const routes = [
     },
     {
         method: 'DELETE',
-        path: buildRoutePath('/users:id'),
+        path: buildRoutePath('/users/:id/groups/:groupId'),
         handler: (req, res) => {
-            return res.end()            
+            return res.end()
         }
     }
 ]
