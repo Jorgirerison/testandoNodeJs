@@ -16,9 +16,9 @@ const server = http.createServer(async (req, res) => {
 
     if (route) {
         const routeParams = req.url.match(route.path)
+        // apenas filtrando a variável routeParams para passar apenas o id
+        req.params = { ...routeParams.groups }
 
-        console.log(routeParams);
-        
         return route.handler(req, res)
     }
 
